@@ -1,10 +1,11 @@
 namespace Advent2024;
 
-public class Day2
+public class Day2 : BaseClass
 {
-    public object Part1(string input) => ParseReports(input).Count(IsSafe);
-    public object Part2(string input) => ParseReports(input)
-    .Count(rep => RemoveSingleLevelPossibilities(rep).Any(IsSafe));
+    public override object Part1(string input) =>
+        ParseReports(input).Count(IsSafe);
+    public override object Part2(string input) =>
+        ParseReports(input).Count(rep => RemoveSingleLevelPossibilities(rep).Any(IsSafe));
 
     private IEnumerable<int[]> ParseReports(string input) =>
         input.Split("\r\n")

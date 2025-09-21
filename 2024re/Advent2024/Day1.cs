@@ -1,8 +1,8 @@
 ﻿namespace Advent2024;
 
-public class Day1
+public class Day1 : BaseClass
 {
-    public int GetTotalDistance(string input)
+    public override object Part1(string input)
     {
         var (l1, l2) = ReadLists(input);
 
@@ -12,7 +12,7 @@ public class Day1
         return l1.Zip(l2).Sum(p => Math.Abs(p.First - p.Second));
     }
 
-    public int GetSimilarityScore(string input)
+    public override object Part2(string input)
     {
         var (l1, l2) = ReadLists(input);
 
