@@ -1,6 +1,6 @@
 ﻿namespace Advent2024;
 
-public class Day1 : BaseClass
+public class Day1 : Solver
 {
     public override object Part1(string input)
     {

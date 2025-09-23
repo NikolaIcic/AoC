@@ -1,6 +1,6 @@
 namespace Advent2024;
 
-public class Day2 : BaseClass
+public class Day2 : Solver
 {
     public override object Part1(string input) =>
         ParseReports(input).Count(IsSafe);

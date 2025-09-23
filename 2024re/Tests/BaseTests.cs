@@ -2,10 +2,11 @@ namespace Tests;
 
 using Advent2024;
 
-public abstract class BaseTests<T> where T : BaseClass,new()
+public abstract class BaseTests<T> where T : Solver,new()
 {
     private readonly T solver = new();
-    protected abstract string AcceptanceInput { get; }
+    protected abstract string AcceptanceInput1 { get; }
+    protected abstract string AcceptanceInput2 { get; }
     protected abstract object AcceptencePart1 { get; }
     protected abstract object AcceptencePart2 { get; }
     protected abstract object ExpectedPart1 { get; }
@@ -21,7 +22,7 @@ public abstract class BaseTests<T> where T : BaseClass,new()
     [Fact]
     public void AcceptanceTest1()
     {
-        Assert.Equal(AcceptencePart1, solver.Part1(AcceptanceInput));
+        Assert.Equal(AcceptencePart1, solver.Part1(AcceptanceInput1));
     }
 
     [Fact]
@@ -33,7 +34,8 @@ public abstract class BaseTests<T> where T : BaseClass,new()
     [Fact]
     public void AcceptanceTest2()
     {
-        Assert.Equal(AcceptencePart2, solver.Part2(AcceptanceInput));
+        var input = AcceptanceInput2 ?? AcceptanceInput1;
+        Assert.Equal(AcceptencePart2, solver.Part2(input));
     }
 
     [Fact]
