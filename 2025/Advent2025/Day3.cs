@@ -1,6 +1,4 @@
-﻿using System.Numerics;
-
-namespace Advent2025
+﻿namespace Advent2025
 {
     public class Day3 : Solver
     {
