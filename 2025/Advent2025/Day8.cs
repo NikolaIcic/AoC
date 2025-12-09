@@ -7,7 +7,7 @@ namespace Advent2025
     {
         public override object Part1(string input) => Solve(input);
         public override object Part2(string input) => Solve2(input);
-        private static long Solve(string input)
+        private static int Solve(string input)
         {
             var boxes = MapBoxes(input).ToList();
             var edges = FindAllEdges(boxes);
@@ -19,10 +19,10 @@ namespace Advent2025
                 dsu.Union(edges[i].A, edges[i].B);
             var sizes = dsu.GetAllSizes();
             sizes.Sort((a, b) => b - a);
-            return (long)sizes[0] * sizes[1] * sizes[2];
+            return sizes[0] * sizes[1] * sizes[2];
         }
 
-        private static long Solve2(string input)
+        private static int Solve2(string input)
         {
             var boxes = MapBoxes(input).ToList();
             var edges = FindAllEdges(boxes);
@@ -35,7 +35,7 @@ namespace Advent2025
                 {
                     unions++;
                     if (unions == boxes.Count - 1)
-                        return (long)e.A.x * e.B.x;
+                        return e.A.x * e.B.x;
                 }
 
             throw new ArgumentException("Could not join all boxes in a union");
@@ -64,8 +64,7 @@ namespace Advent2025
                     long dx = (long)a.x - b.x;
                     long dy = (long)a.y - b.y;
                     long dz = (long)a.z - b.z;
-                    long distSq = dx * dx + dy * dy + dz * dz;
-                    edges.Add(new Edge(a, b, distSq));
+                    edges.Add(new Edge(a, b, dx * dx + dy * dy + dz * dz));
                 }
             }
             return edges;
