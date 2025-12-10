@@ -13,7 +13,7 @@
             for (int i = 0; i < tiles.Length; i++)
                 for (int j = i + 1; j < tiles.Length; j++)
                 {
-                    long area = tiles[i].RectArea(tiles[j]);
+                    long area = tiles[i].Area(tiles[j]);
                     maxArea = Math.Max(maxArea, area);
                 }
             return maxArea;
@@ -32,10 +32,10 @@
                 {
                     var p2 = tiles[j];
 
-                    double x1 = Math.Min(p1.X, p2.X) + 0.5;
-                    double x2 = Math.Max(p1.X, p2.X) - 0.5;
-                    double y1 = Math.Min(p1.Y, p2.Y) + 0.5;
-                    double y2 = Math.Max(p1.Y, p2.Y) - 0.5;
+                    double x1 = Math.Min(p1.X, p2.X) + 0.1;
+                    double x2 = Math.Max(p1.X, p2.X) - 0.1;
+                    double y1 = Math.Min(p1.Y, p2.Y) + 0.1;
+                    double y2 = Math.Max(p1.Y, p2.Y) - 0.1;
 
                     var rect = new Polygon(
                     [
@@ -47,7 +47,7 @@
 
                     if (!rect.Edges.Any(e => polygon.Intersects(e)))
                     {
-                        long area = p1.RectArea(p2);
+                        long area = p1.Area(p2);
                         maxArea = Math.Max(maxArea, area);
                     }
                 }
@@ -69,11 +69,11 @@
             public double X { get; } = x;
             public double Y { get; } = y;
 
-            public long RectArea(Point that)
+            public long Area(Point that)
             {
-                long width = (long)Math.Abs(X - that.X) + 1;
-                long height = (long)Math.Abs(Y - that.Y) + 1;
-                return width * height;
+                long w = (long)Math.Abs(X - that.X) + 1;
+                long h = (long)Math.Abs(Y - that.Y) + 1;
+                return w * h;
             }
         }
 
